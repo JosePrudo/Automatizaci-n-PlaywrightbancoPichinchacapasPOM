@@ -25,6 +25,7 @@ export default defineConfig({
     ['html', { outputFolder: 'reports/html', open: 'never' }],
     ['junit', { outputFile: 'reports/junit/results.xml' }],
     ['json', { outputFile: 'reports/json/results.json' }],
+    ['./src/reporters/SerenityStyleReporter.ts', { outputFolder: 'reports/serenity', title: 'Simulador de Crédito Hipotecario - Banco Pichincha' }],
   ],
   use: {
     baseURL: BASE_URL,

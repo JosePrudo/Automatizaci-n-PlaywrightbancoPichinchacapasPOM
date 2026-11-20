@@ -14,6 +14,7 @@ src/flows/             -> Capa de negocio: recorre el wizard hasta un paso dado
 src/pages/             -> Capa POM: un Page Object por sección (localizadores + acciones)
 src/data/              -> Datos de prueba y tipos
 src/utils/             -> Utilidades (formato de moneda, mock del API)
+src/reporters/         -> Reporter HTML con estilo Serenity BDD
 playwright.config.ts   -> Video, screenshots, trace y reporteadores
 ```
 
@@ -64,6 +65,7 @@ de resultados en la ejecución.
 | Evidencia | Ubicación |
 |---|---|
 | Reporte HTML (con video, screenshot y pasos) | `reports/html/index.html` |
+| Reporte estilo Serenity BDD (tablero, cobertura por característica, narrativa de pasos y evidencias) | `reports/serenity/index.html` |
 | Reporte JUnit (CI) | `reports/junit/results.xml` |
 | Reporte JSON | `reports/json/results.json` |
 | Video `.webm` por prueba | `test-results/<prueba>/video.webm` |
