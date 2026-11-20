@@ -1,0 +1,83 @@
+name: Pruebas E2E Playwright
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      slow_mo:
+        description: 'Milisegundos entre cada acción (SLOW_MO)'
+        required: false
+        default: '1200'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  e2e:
+    name: Simulador de Crédito Hipotecario
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      CI: true
+      PW_CHANNEL: bundled
+      SLOW_MO: ${{ github.event.inputs.slow_mo || '1200' }}
+
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Instalar navegador Chromium de Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Validar tipos TypeScript
+        run: npm run typecheck
+
+      - name: Ejecutar pruebas
+        run: npm test
+
+      - name: Publicar resumen de resultados
+        if: ${{ !cancelled() }}
+        run: |
+          node -e "
+            const r = require('./reports/json/results.json').stats;
+            const total = r.expected + r.unexpected + r.flaky + r.skipped;
+            const lines = [
+              '## Resultados de pruebas Playwright',
+              '',
+              '| Total | ✅ Pasaron | ❌ Fallaron | ⚠️ Inestables | ⏭️ Omitidas | Duración |',
+              '|---|---|---|---|---|---|',
+              '| ' + [total, r.expected, r.unexpected, r.flaky, r.skipped, (r.duration/1000).toFixed(1) + ' s'].join(' | ') + ' |',
+              '',
+              'Descarga el artefacto **reporte-playwright** para ver el reporte HTML con videos.'
+            ];
+            require('fs').appendFileSync(process.env.GITHUB_STEP_SUMMARY, lines.join('\n') + '\n');
+          "
+
+      - name: Subir reporte HTML, JUnit y JSON
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: reporte-playwright
+          path: reports/
+          retention-days: 30
+
+      - name: Subir videos y evidencias
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: videos-y-evidencias
+          path: test-results/
+          retention-days: 30

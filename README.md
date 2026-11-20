@@ -51,6 +51,14 @@ npm run report           # abre el reporte HTML
 Variables opcionales: `BASE_URL`, `PW_CHANNEL` (`chrome`, `msedge`, `bundled`) y `SLOW_MO` (ms entre acciones,
 útil para videos más legibles, p. ej. `$env:SLOW_MO=300; npm test`).
 
+## Integración continua (GitHub Actions)
+
+El workflow [`.github/workflows/playwright.yml`](.github/workflows/playwright.yml) se ejecuta en cada push o
+pull request a `main` y manualmente desde **Actions → Pruebas E2E Playwright → Run workflow** (permite
+ajustar `SLOW_MO`). Instala dependencias y Chromium, valida tipos, ejecuta la suite y publica como
+artefactos el reporte (`reporte-playwright`) y los videos (`videos-y-evidencias`), además de un resumen
+de resultados en la ejecución.
+
 ## Resultados y evidencias
 
 | Evidencia | Ubicación |
