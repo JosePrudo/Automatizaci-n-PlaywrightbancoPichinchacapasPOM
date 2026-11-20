@@ -65,9 +65,7 @@ export class SimulationFlow {
   async completeCapabilities(data: SimulationData): Promise<void> {
     await test.step('Paso 5 - Capacidades: completar y continuar', async () => {
       await this.p.capabilitiesStep.expectLoaded();
-      if (data.capabilities) {
-        await this.p.capabilitiesStep.fill(data.capabilities);
-      }
+      await this.p.capabilitiesStep.fill(data.capabilities);
       await this.p.capabilitiesStep.next();
     });
   }

@@ -52,6 +52,6 @@ export interface SimulationData {
   project: ProjectData;
   finance: FinanceData;
   personalize: PersonalizeData;
-  capabilities?: CapabilitiesData;
+  capabilities: CapabilitiesData;
   contact: ContactData;
 }

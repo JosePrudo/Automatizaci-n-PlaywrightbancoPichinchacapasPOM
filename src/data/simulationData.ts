@@ -16,7 +16,7 @@ export const STEP_NAMES = [
 
 export const SIMULATION_CODE_PATTERN = /^\d{3} \d{3}$/;
 
-/** Solicitud en pareja con todos los datos opcionales completos. */
+/** Solicitud en pareja, independiente, con rango de precio personalizado. */
 export const fullSimulation: SimulationData = {
   project: {
     applicationType: 'pareja',
@@ -54,7 +54,7 @@ export const fullSimulation: SimulationData = {
   },
 };
 
-/** Flujo mínimo: omite los datos opcionales del paso Capacidades. */
+/** Solicitud individual, empleado, con cuota fija. */
 export const minimalSimulation: SimulationData = {
   project: {
     applicationType: 'individual',
@@ -72,6 +72,15 @@ export const minimalSimulation: SimulationData = {
     loanAmount: 150000,
     loanTermYears: '20',
     paymentType: 'fija',
+  },
+  capabilities: {
+    fullName: 'Maria Lopez',
+    cedula: '0912345678',
+    email: 'maria.lopez@mail.com',
+    phone: '0987654321',
+    authorizeCreditCheck: true,
+    dependents: 1,
+    workplace: 'Comercial Andina S.A.',
   },
   contact: {
     preferredTime: 'mañana',

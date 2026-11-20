@@ -30,8 +30,12 @@ test.describe('Paso 5 - Capacidades', () => {
     await expect(capabilitiesStep.workplaceInput).toHaveValue(data.workplace);
   });
 
-  test('los campos son opcionales: permite continuar sin diligenciarlos', async ({ capabilitiesStep, contactStep }) => {
-    await expect(capabilitiesStep.nextButton).toBeEnabled();
+  test('llena los datos del escenario individual y avanza al paso Contacto', async ({ capabilitiesStep, contactStep }) => {
+    const data = minimalSimulation.capabilities;
+    await capabilitiesStep.fill(data);
+    await expect(capabilitiesStep.fullNameInput).toHaveValue(data.fullName);
+    await expect(capabilitiesStep.emailInput).toHaveValue(data.email);
+    await expect(capabilitiesStep.authorizeCreditCheck).toBeChecked();
     await capabilitiesStep.next();
     await contactStep.expectLoaded();
   });

@@ -4,7 +4,7 @@ import { SimulationData } from '../src/data/types';
 
 const scenarios: Array<{ name: string; data: SimulationData }> = [
   { name: 'flujo completo con todos los datos', data: fullSimulation },
-  { name: 'flujo mínimo sin datos opcionales', data: minimalSimulation },
+  { name: 'flujo individual con cuota fija', data: minimalSimulation },
 ];
 
 test.describe('E2E - Simulación de crédito hipotecario (backend real)', () => {

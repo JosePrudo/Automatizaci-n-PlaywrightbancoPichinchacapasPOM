@@ -6,6 +6,11 @@ const BASE_URL = process.env.BASE_URL ?? 'https://brave-mud-0605ba20f.3.azuresta
 const channelEnv = process.env.PW_CHANNEL ?? 'chrome';
 const channel = channelEnv === 'bundled' ? undefined : channelEnv;
 
+// Evita que la extensión de VS Code ("Show browser") reutilice un navegador compartido que queda abierto:
+// cada worker lanza su propio navegador y Playwright lo cierra al terminar la ejecución.
+delete process.env.PW_TEST_REUSE_CONTEXT;
+delete process.env.PW_TEST_CONNECT_WS_ENDPOINT;
+
 export default defineConfig({
   testDir: './tests',
   outputDir: './test-results',
