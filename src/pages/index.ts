@@ -1,0 +1,9 @@
+export { BasePage } from './BasePage';
+export { WizardPage } from './WizardPage';
+export { ProjectStepPage } from './ProjectStepPage';
+export { FinancesStepPage } from './FinancesStepPage';
+export { PersonalizeStepPage } from './PersonalizeStepPage';
+export { ResultsStepPage } from './ResultsStepPage';
+export { CapabilitiesStepPage } from './CapabilitiesStepPage';
+export { ContactStepPage } from './ContactStepPage';
+export { ConfirmationStepPage } from './ConfirmationStepPage';

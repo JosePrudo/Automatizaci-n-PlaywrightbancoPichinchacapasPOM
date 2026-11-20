@@ -1,0 +1,29 @@
+{
+  "name": "simulacion-credito-hipotecario-pom",
+  "version": "1.0.0",
+  "description": "Repositorio para practicar automatización con página de banco pichincha en Playwright con POM",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:e2e": "playwright test tests/08-e2e.spec.ts",
+    "typecheck": "tsc --noEmit",
+    "report": "playwright show-report reports/html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JosePrudo/Automatizaci-n-PlaywrightbancoPichinchacapasPOM.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/JosePrudo/Automatizaci-n-PlaywrightbancoPichinchacapasPOM/issues"
+  },
+  "homepage": "https://github.com/JosePrudo/Automatizaci-n-PlaywrightbancoPichinchacapasPOM#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  }
+}
