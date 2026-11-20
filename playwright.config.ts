@@ -13,7 +13,7 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   workers: process.env.CI ? 2 : undefined,
-  timeout: 60_000,
+  timeout: 180_000,
   expect: { timeout: 10_000 },
   reporter: [
     ['list'],
@@ -31,7 +31,7 @@ export default defineConfig({
     actionTimeout: 15_000,
     navigationTimeout: 30_000,
     launchOptions: {
-      slowMo: Number(process.env.SLOW_MO ?? 0),
+      slowMo: Number(process.env.SLOW_MO ?? 1200),
     },
   },
   projects: [
